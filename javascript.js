@@ -1,30 +1,38 @@
 
 //console.log(getComputerChoice());
-playOneTurn();
+
+const playerSelection = getPlayerChoice();
+const computerSelection = getComputerChoice();
+
+console.log(playRound(playerSelection, computerSelection));
 
 
-function playOneTurn(playerChoice, computerChoice) {
-    playerChoice = playerSelection();
-    computerChoice = getComputerChoice();
-
-    if (playerChoice === computerChoice) {
-        console.log("It's a tie!");
-    } else if (playerChoice == "Rock" && computerChoice == "Paper") {
-        playerLoseLog(playerChoice, computerChoice);
-    } else if (playerChoice == "Rock" && computerChoice == "Scissors") {
-        playerWinLog(playerChoice, computerChoice);
-    } else if (playerChoice == "Paper" && computerChoice == "Rock") {
-        playerWinLog(playerChoice, computerChoice);
-    } else if (playerChoice == "Paper" && computerChoice == "Scissors") {
-        playerLoseLog(playerChoice, computerChoice);
-    } else if (playerChoice == "Scissors" && computerChoice == "Rock") {
-        playerLoseLog(playerChoice, computerChoice);
-    } else if (playerChoice == "Scissors" && computerChoice == "Paper") {
-        playerWinLog(playerChoice, computerChoice);
+function playRound(playerSelection, computerSelection) {
+    
+    if (playerSelection === computerSelection) {
+        return "It's a tie!"
+    } else if (playerSelection == "Rock" && computerSelection == "Paper") {
+        //playerLost(playerSelection, computerSelection);
+        return playerLost(playerSelection, computerSelection)
+    } else if (playerSelection == "Rock" && computerSelection == "Scissors") {
+        //playerWon(playerSelection, computerSelection);
+        return playerWon(playerSelection, computerSelection)
+    } else if (playerSelection == "Paper" && computerSelection == "Rock") {
+        //playerWon(playerSelection, computerSelection);
+        return playerWon(playerSelection, computerSelection)
+    } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
+        //playerLost(playerSelection, computerSelection);
+        return playerLost(playerSelection, computerSelection)
+    } else if (playerSelection == "Scissors" && computerSelection == "Rock") {
+        //playerLost(playerSelection, computerSelection);
+        return playerLost(playerSelection, computerSelection)
+    } else if (playerSelection == "Scissors" && computerSelection == "Paper") {
+        //playerWon(playerSelection, computerSelection);
+        return playerWon(playerSelection, computerSelection)
     }
 }
 
-function playerSelection() {
+function getPlayerChoice() {
     console.log("Select your choice: 1-Rock, 2-Paper, 3-Scissors");
     let selectedNumber = parseInt(prompt("Select your number"));
     if (selectedNumber == 1) {
@@ -45,10 +53,10 @@ function getComputerChoice() {
     return computerChoice
 }
 
-function playerWinLog(playerChoice, computerChoice) {
-    console.log(`You win! ${playerChoice} beats ${computerChoice}`);
+function playerWon(playerSelection, computerSelection) {
+    return `You win! ${playerSelection} beats ${computerSelection}`
 }
 
-function playerLoseLog(playerChoice, computerChoice) {
-    console.log(`You lose! ${computerChoice} beats ${playerChoice}`)
+function playerLost(playerSelection, computerSelection) {
+    return `You lose! ${computerSelection} beats ${playerSelection}`
 }
