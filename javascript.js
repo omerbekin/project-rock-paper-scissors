@@ -1,33 +1,43 @@
 
 //console.log(getComputerChoice());
 
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
+let playerScore = 0;
+let computerScore = 0;
 
-console.log(playRound(playerSelection, computerSelection));
+game();
 
+function game(playerSelection, computerSelection) {
+    let totalRound = 5;
+    for (let round = 0; round < totalRound; round++) {
+
+        let playerSelection = getPlayerChoice();
+        let computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+    }
+    console.log(`Final score -> You ${playerScore} - Computer ${computerScore}`);
+}
 
 function playRound(playerSelection, computerSelection) {
-    
+
     if (playerSelection === computerSelection) {
         return "It's a tie!"
     } else if (playerSelection == "Rock" && computerSelection == "Paper") {
-        //playerLost(playerSelection, computerSelection);
+
         return playerLost(playerSelection, computerSelection)
     } else if (playerSelection == "Rock" && computerSelection == "Scissors") {
-        //playerWon(playerSelection, computerSelection);
+
         return playerWon(playerSelection, computerSelection)
     } else if (playerSelection == "Paper" && computerSelection == "Rock") {
-        //playerWon(playerSelection, computerSelection);
+
         return playerWon(playerSelection, computerSelection)
     } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
-        //playerLost(playerSelection, computerSelection);
+
         return playerLost(playerSelection, computerSelection)
     } else if (playerSelection == "Scissors" && computerSelection == "Rock") {
-        //playerLost(playerSelection, computerSelection);
+
         return playerLost(playerSelection, computerSelection)
     } else if (playerSelection == "Scissors" && computerSelection == "Paper") {
-        //playerWon(playerSelection, computerSelection);
+
         return playerWon(playerSelection, computerSelection)
     }
 }
@@ -52,11 +62,12 @@ function getComputerChoice() {
     let computerChoice = choices[Math.floor(Math.random() * choices.length)];
     return computerChoice
 }
-
 function playerWon(playerSelection, computerSelection) {
-    return `You win! ${playerSelection} beats ${computerSelection}`
+    playerScore++;
+    return `You win! ${playerSelection} beats ${computerSelection}\nScore -> You: ${playerScore} - Computer: ${computerScore}`
 }
 
 function playerLost(playerSelection, computerSelection) {
-    return `You lose! ${computerSelection} beats ${playerSelection}`
+    computerScore++;
+    return `You lose! ${computerSelection} beats ${playerSelection}\nScore -> You: ${playerScore} - Computer: ${computerScore}`
 }
